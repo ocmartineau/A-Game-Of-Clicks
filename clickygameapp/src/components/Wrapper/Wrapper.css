@@ -1,0 +1,11 @@
+.wrapper {
+    background: rgb(175, 175, 175);
+    background-image: url('http://cdn.animalhi.com/1920x1080/20130211/tv%20pokemon%20poke%20balls%20gameboy%203d%20render%20tv%20shows%20clean%20pokeball%20game%20show%20game%20art%201920x1080%20wall_www.animalhi.com_91.jpg');
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: flex-start;
+    overflow: auto;
+    padding-bottom: 50px;
+  }
