@@ -1,0 +1,10 @@
+.card {
+    height: 400px;
+    width: 400px;
+    position: relative;
+}
+
+.card > .img-container {
+    overflow: hidden;
+    
+}
