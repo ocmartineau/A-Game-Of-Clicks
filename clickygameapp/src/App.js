@@ -9,6 +9,8 @@ import Column from "./Column";
 import friends from "./friends.json";
 import "./App.css";
 
+
+//Defining function for shuffling the json array
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -21,12 +23,22 @@ class App extends Component {
   // Set this.state
   state = {
     friends,
-    currentScore: 0,
-    topScore: 0,
-    rightWrong: "",
     clicked: [],
+    maxScore: 0,
+    currentScore: 0,
+    rightWrong: "",
   };
 
+
+  //SETTING HANDLE EVENTS
+
+  //Handle event for shuffle function
+  handleShuffle = () => {
+    let shuffledFriends = shuffleArray(friends);
+    this.setState({ friends: shuffledFriends });
+  };
+
+  //Handle event for clicking on pic
   handleClick = id => {
     if (this.state.clicked.indexOf(id) === -1) {
       this.handleIncrement();
@@ -36,14 +48,15 @@ class App extends Component {
     }
   };
 
+  //Handle event for incrementing score
   handleIncrement = () => {
     const newScore = this.state.currentScore + 1;
     this.setState({
       currentScore: newScore,
       rightWrong: ""
     });
-    if (newScore >= this.state.topScore) {
-      this.setState({ topScore: newScore });
+    if (newScore >= this.state.maxScore) {
+      this.setState({ maxScore: newScore });
     }
     else if (newScore === 12) {
       this.setState({ rightWrong: "You win!" });
@@ -51,20 +64,18 @@ class App extends Component {
     this.handleShuffle();
   };
 
+  //Handle event for resetting
   handleReset = () => {
     this.setState({
       currentScore: 0,
-      topScore: this.state.topScore,
-      // rightWrong: "Glaven!",
+      maxScore: this.state.maxScore,
       clicked: []
     });
     this.handleShuffle();
   };
 
-  handleShuffle = () => {
-    let shuffledFriends = shuffleArray(friends);
-    this.setState({ friends: shuffledFriends });
-  };
+  
+//RENDERING COMPONENT
 
   render() {
     return (
@@ -72,7 +83,7 @@ class App extends Component {
         <Nav
           title="CLICK THAT POKEMON!!!"
           score={this.state.currentScore}
-          topScore={this.state.topScore}
+          maxScore={this.state.maxScore}
           rightWrong={this.state.rightWrong}
         />
 
