@@ -29,6 +29,45 @@ class App extends Component {
     rightWrong: "",
   };
 
+  
+  //RENDERING COMPONENT
+  
+  render() {
+    return (
+      <Wrapper>
+        <Nav
+          title="CLICK THAT POKEMON!!!"
+          score={this.state.currentScore}
+          maxScore={this.state.maxScore}
+          rightWrong={this.state.rightWrong}
+        />
+
+        <Title>
+          Click on a Pokemon but don't click any more than once or you'll
+          lose!
+        </Title>
+
+        <Container>
+          <Row>
+            {this.state.friends.map(friend => (
+              <Column size="md-3 sm-6">
+                <FriendCard
+                  key={friend.id}
+                  handleClick={this.handleClick}
+                  handleIncrement={this.handleIncrement}
+                  handleReset={this.handleReset}
+                  handleShuffle={this.handleShuffle}
+                  id={friend.id}
+                  image={friend.image}
+                />
+              </Column>
+            ))}
+          </Row>
+        </Container>
+      </Wrapper>
+    );
+  }
+  
 
   //SETTING HANDLE EVENTS
 
@@ -75,43 +114,9 @@ class App extends Component {
   };
 
   
-//RENDERING COMPONENT
 
-  render() {
-    return (
-      <Wrapper>
-        <Nav
-          title="CLICK THAT POKEMON!!!"
-          score={this.state.currentScore}
-          maxScore={this.state.maxScore}
-          rightWrong={this.state.rightWrong}
-        />
 
-        <Title>
-          Click on a Pokemon but don't click any more than once or you'll
-          lose!
-        </Title>
-
-        <Container>
-          <Row>
-            {this.state.friends.map(friend => (
-              <Column size="md-3 sm-6">
-                <FriendCard
-                  key={friend.id}
-                  handleClick={this.handleClick}
-                  handleIncrement={this.handleIncrement}
-                  handleReset={this.handleReset}
-                  handleShuffle={this.handleShuffle}
-                  id={friend.id}
-                  image={friend.image}
-                />
-              </Column>
-            ))}
-          </Row>
-        </Container>
-      </Wrapper>
-    );
-  }
+  
 }
 
 export default App;
